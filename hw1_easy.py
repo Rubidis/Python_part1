@@ -1,38 +1,48 @@
-# Все задачи текущего блока решите с помощью генераторов списков!
+# Задача-1:
+# Напишите скрипт, создающий директории dir_1 - dir_9 в папке,
+# из которой запущен данный скрипт.
+# И второй скрипт, удаляющий эти папки.
+import os
+import shutil
 
-# Задание-1:
-# Дан список, заполненный произвольными целыми числами.
-# Получить новый список, элементы которого будут
-# квадратами элементов исходного списка
-# [1, 2, 4, 0] --> [1, 4, 16, 0]
-
-x = [1, 2, 4, 0]
-
-lst_g = [a ** 2 for a in list(x)]
-print('x = ', lst_g)
+path_dir = [('dir_' + str(i + 1)) for i in range(9)]
 
 
-# Задание-2:
-# Даны два списка фруктов.
-# Получить список фруктов, присутствующих в обоих исходных списках.
+def make_dir(paths):
+    dir_path = os.path.join(os.getcwd(), paths)
+    try:
+        os.mkdir(dir_path)
+    except:
+        print(dir_path + ' - такая директория уже есть')
 
-x = ['Апельсин', 'Мандарин', 'Киви', 'Банан']
-y = ['Абрикос', 'Алыча', 'Мандарин', 'Киви']
+# Задача-2:
+# Напишите скрипт, отображающий папки текущей директории.
+def list_dir(main_path):
+    for _ in os.listdir(main_path):
+        print(_)
 
-a = [a for a in x if a not in y ]
-b = [b for b in y if b not in x]
+main_path = os.getcwd()
 
-print(a + b)
+# print(main_path)
 
-# Задание-3:
-# Дан список, заполненный произвольными числами.
-# Получить список из элементов исходного, удовлетворяющих следующим условиям:
-# + Элемент кратен 3
-# + Элемент положительный
-# + Элемент не кратен 4
+# Задача-3:
+# Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
 
-t = [1, 2, 3, 4, -3, 0 , 6, -9, 9, 8]
+def copy_file(first_file, backup_file):
+    shutil.copy(first_file, backup_file)
 
-st3 = [a for a in t if (a % 3) == 0 if a > 0 if a % 4 != 0]
 
-print(st3)
+def delete_dir(dir_path):
+    dir_path = os.path.join(os.getcwd(), dir_path)
+    try:
+        os.rmdir(dir_path)
+    except:
+        print(dir_path + ' - такой директории нет')
+
+
+def change_dir(dir_path):
+    try:
+        os.chdir(dir_path)
+        print(os.getcwd() + ' - текущая директория')
+    except:
+        print(dir_path + ' - такой директории нет')
