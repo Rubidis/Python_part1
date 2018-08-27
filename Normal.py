@@ -22,12 +22,12 @@ class Person:
 	
 		
 	def generate_person_by_name(name, health=100, damage=50, armor=0.7):
-    return {'name': name, 'health': health, 'damage': damage, 'armor': armor}
+    	return {'name': name, 'health': health, 'damage': damage, 'armor': armor}
 	
 	def write_person_to_file(person):
-    with open(person['name'], 'w', encoding='UTF-8') as f:
-        for key, value in person.items():
-            f.write('{} {}\n'.format(key, value))
+    	with open(person['name'], 'w', encoding='UTF-8') as f:
+        	for key, value in person.items():
+            	f.write('{} {}\n'.format(key, value))
 
 
 
